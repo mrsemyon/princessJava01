@@ -9,59 +9,65 @@ public class Game{
 
     private int numberRounds;
 
-    private int playerFirstValue;
-    private int playerSecondValue;
-
     public void setNumberRounds(int number){
         this.numberRounds = number;
-    }
-
-    public void setPlayerFirstValue(int value){
-        this.playerFirstValue = value;
-    }
-
-    public void setPlayerSecondValue(int value){
-        this.playerSecondValue = value;
-    }
-
-    public int getPlayerSecondValue(){
-        return this.playerSecondValue;
     }
 
     public void mainGame(){
         Random rand = new Random();
         Scanner in = new Scanner(System.in);
 
+        Player playerFirst = new Player();
+        Player playerSecond = new Player();
+
         System.out.println("Welcome to Rock, Paper & Scissors!");
+
+        System.out.println("Insert the first player (0 - human, 1 - bot)");
+        playerFirst.setStatus(in.nextInt());
+
+        System.out.println("Insert the second player (0 - human, 1 - bot)");
+        playerSecond.setStatus(in.nextInt());
 
         System.out.println("Insert the number of rounds:");
         setNumberRounds(in.nextInt());
 
         for (int i = 0; i < numberRounds; i++){
 
-            System.out.println("Insert your shape (0 - rock, 1 - paper, 2 - scissors):");
+            if (playerFirst.getStatus() == 0) {
+                System.out.println("Insert player 1 shape (0 - rock, 1 - paper, 2 - scissors):");
+                playerFirst.setValue(in.nextInt());
+            } else {
+                playerFirst.setValue(rand.nextInt(3));
+            }
 
-            setPlayerFirstValue(in.nextInt());
+            Hand handFirst = new Hand(playerFirst.getValue());
+            System.out.println("First player is chosen a " + handFirst.getName());
 
-            setPlayerSecondValue(rand.nextInt(3));
+            if (playerSecond.getStatus() == 0) {
+                System.out.println("Insert player 2 shape (0 - rock, 1 - paper, 2 - scissors):");
+                playerSecond.setValue(in.nextInt());
+            } else {
+                playerSecond.setValue(rand.nextInt(3));
+            }
 
-            System.out.println("You opponent chose a " + getPlayerSecondValue());
+            Hand handSedond = new Hand(playerSecond.getValue());
+            System.out.println("Second player is chosen a " + handSedond.getName());
 
-            System.out.println(checkResult());
+            System.out.println(checkResult(playerFirst, playerSecond));
         }
 
         System.out.println("Game over.");
     }
 
-    public String checkResult(){
+    public String checkResult(Player playerFirst, Player playerSecond){
         String result;
 
-        if (cost[playerFirstValue][playerSecondValue] == 0) {
+        if (cost[playerFirst.getValue()][playerSecond.getValue()] == 0) {
             result = "Draw -_-";
-        } else if (cost[playerFirstValue][playerSecondValue] < 0){
-            result = "You lose...";
+        } else if (cost[playerFirst.getValue()][playerSecond.getValue()] < 0){
+            result = "Player 1 lose...";
         } else {
-            result = "You win!!!";
+            result = "Player 2 win!!!";
         }
 
         return result;
