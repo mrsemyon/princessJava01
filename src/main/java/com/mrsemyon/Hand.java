@@ -19,6 +19,5 @@ public class Hand{
                 this.name = "scissors";
                 break;
         }
-
     }
 }
