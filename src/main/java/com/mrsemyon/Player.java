@@ -9,15 +9,10 @@ public abstract class Player {
         this.name = name;
     }
 
-    void reset(){
-        score = 0;
-        lastHand = null;
-    }
-
     Hand drawHand(){
         lastHand = selectHand();
         return lastHand;
-    };
+    }
 
     protected abstract Hand selectHand();
 }

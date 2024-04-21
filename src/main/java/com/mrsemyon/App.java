@@ -2,10 +2,10 @@ package com.mrsemyon;
 
 public class App{
     App(){
-        Player left = new ComputerPlayer("Left");
-        Player right = new ComputerPlayer("Right");
-
-        Player[] players = new Player[] {left, right};
+        Player[] players = new Player[] {
+                new ComputerPlayer("Lol"),
+                new HumanPlayer("Kek")
+        };
 
         Game.selectHands(players);
         Game.showSelectedHands(players);

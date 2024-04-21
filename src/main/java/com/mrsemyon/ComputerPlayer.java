@@ -1,6 +1,6 @@
 package com.mrsemyon;
 
-class ComputerPlayer extends Player{
+public class ComputerPlayer extends Player{
     ComputerPlayer(String name) {
         super(name);
     }
