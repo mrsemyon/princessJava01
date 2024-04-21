@@ -1,15 +1,6 @@
 package com.mrsemyon;
 
 public class Game{
-    static void play(int masScore, Player one, Player two){
-        int round = 0;
-    }
-
-    static void selectHands(Player[] players){
-        players[0].dropHand();
-        players[1].dropHand();
-    }
-
     static Player evaluateRound(Player[] players){
         Hand first = players[0].lastHand;
         Hand second = players[1].lastHand;

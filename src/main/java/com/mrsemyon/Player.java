@@ -3,16 +3,11 @@ package com.mrsemyon;
 public abstract class Player {
     final String name;
     int score = 0;
-    Hand lastHand = null;
+    protected Hand lastHand = null;
 
     Player(String name) {
         this.name = name;
     }
 
-    Hand dropHand(){
-        lastHand = selectHand();
-        return lastHand;
-    }
-
-    protected abstract Hand selectHand();
+    protected abstract void selectHand();
 }
