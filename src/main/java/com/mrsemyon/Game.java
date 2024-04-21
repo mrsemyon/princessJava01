@@ -1,75 +1,48 @@
 package com.mrsemyon;
 
-import java.util.Random;
-import java.util.Scanner;
-
 public class Game{
-
-    private final int[][] cost = {{0, -1, 1}, {1, 0, -1}, {-1, 1, 0}};
-
-    private int numberRounds;
-
-    public void setNumberRounds(int number){
-        this.numberRounds = number;
+    static void play(int masScore, Player one, Player two){
+        int round = 0;
     }
 
-    public void mainGame(){
-        Random rand = new Random();
-        Scanner in = new Scanner(System.in);
+    static void selectHands(Player[] players){
+        players[0].drawHand();
+        players[1].drawHand();
+    }
 
-        Player playerFirst = new Player();
-        Player playerSecond = new Player();
-
-        System.out.println("Welcome to Rock, Paper & Scissors!");
-
-        System.out.println("Insert the first player (0 - human, 1 - bot)");
-        playerFirst.setStatus(in.nextInt());
-
-        System.out.println("Insert the second player (0 - human, 1 - bot)");
-        playerSecond.setStatus(in.nextInt());
-
-        System.out.println("Insert the number of rounds:");
-        setNumberRounds(in.nextInt());
-
-        for (int i = 0; i < numberRounds; i++){
-
-            if (playerFirst.getStatus() == 0) {
-                System.out.println("Insert player 1 shape (0 - rock, 1 - paper, 2 - scissors):");
-                playerFirst.setValue(in.nextInt());
-            } else {
-                playerFirst.setValue(rand.nextInt(3));
-            }
-
-            Hand handFirst = new Hand(playerFirst.getValue());
-            System.out.println("First player is chosen a " + handFirst.getName());
-
-            if (playerSecond.getStatus() == 0) {
-                System.out.println("Insert player 2 shape (0 - rock, 1 - paper, 2 - scissors):");
-                playerSecond.setValue(in.nextInt());
-            } else {
-                playerSecond.setValue(rand.nextInt(3));
-            }
-
-            Hand handSedond = new Hand(playerSecond.getValue());
-            System.out.println("Second player is chosen a " + handSedond.getName());
-
-            System.out.println(checkResult(playerFirst, playerSecond));
+    static Player evaluateRound(Player[] players){
+        Hand first = players[0].lastHand;
+        Hand second = players[1].lastHand;
+        if (first == second){
+            return null;
         }
 
-        System.out.println("Game over.");
-    }
-
-    public String checkResult(Player playerFirst, Player playerSecond){
-        String result;
-
-        if (cost[playerFirst.getValue()][playerSecond.getValue()] == 0) {
-            result = "Draw -_-";
-        } else if (cost[playerFirst.getValue()][playerSecond.getValue()] < 0){
-            result = "Player 1 lose...";
+        if (first.beats(second)){
+            return players[0];
         } else {
-            result = "Player 2 win!!!";
+            return players[1];
         }
+    }
 
-        return result;
+    static void showWinner(Player winner){
+        if (winner == null){
+            System.out.println("Draw -_-");
+        } else {
+            System.out.println(winner.name + " is win!");
+            winner.score++;
+        }
+    }
+
+    static void printScores(Player[] players){
+        System.out.printf("Score: %s %d : %s %d",
+                players[0].name, players[0].score,
+                players[1].name, players[1].score
+        );
+    }
+
+    static void showSelectedHands(Player[] players){
+        for (Player player : players){
+            System.out.printf("%s drawn %s\n", player.name, player.lastHand);
+        }
     }
 }
