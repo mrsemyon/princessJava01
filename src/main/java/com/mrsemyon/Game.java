@@ -6,8 +6,8 @@ public class Game{
     }
 
     static void selectHands(Player[] players){
-        players[0].drawHand();
-        players[1].drawHand();
+        players[0].dropHand();
+        players[1].dropHand();
     }
 
     static Player evaluateRound(Player[] players){

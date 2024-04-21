@@ -3,8 +3,8 @@ package com.mrsemyon;
 public class App{
     App(){
         Player[] players = new Player[] {
-                new ComputerPlayer("Lol"),
-                new HumanPlayer("Kek")
+                new BotPlayer("Lol"),
+                new LeatherPlayer("Kek")
         };
 
         Game.selectHands(players);

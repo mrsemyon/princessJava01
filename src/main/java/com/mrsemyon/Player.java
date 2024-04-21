@@ -9,7 +9,7 @@ public abstract class Player {
         this.name = name;
     }
 
-    Hand drawHand(){
+    Hand dropHand(){
         lastHand = selectHand();
         return lastHand;
     }

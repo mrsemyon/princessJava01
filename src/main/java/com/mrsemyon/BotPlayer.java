@@ -1,7 +1,7 @@
 package com.mrsemyon;
 
-public class ComputerPlayer extends Player{
-    ComputerPlayer(String name) {
+public class BotPlayer extends Player{
+    BotPlayer(String name) {
         super(name);
     }
 

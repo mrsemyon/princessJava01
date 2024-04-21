@@ -1,8 +1,7 @@
 package com.mrsemyon;
 
-public class HumanPlayer extends Player {
-
-    HumanPlayer(String name) {
+public class LeatherPlayer extends Player {
+    LeatherPlayer(String name) {
         super(name);
     }
 
