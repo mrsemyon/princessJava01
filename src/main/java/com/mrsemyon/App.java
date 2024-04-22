@@ -2,20 +2,35 @@ package com.mrsemyon;
 
 public class App{
     App(){
-        Player firstPlayer = new BotPlayer("Lol");
-        Player secondPlayer = new LeatherPlayer("Kek");
+        Messenger.welcome();
+
+        Player firstPlayer = PlayerFactory.getPlayer(
+                (Messenger.insertPlayerType(Game.getPlayerNumber()) == 1)
+                        ? PlayerType.BOT : PlayerType.LEATHER,
+                Messenger.insertPlayerName(Game.getPlayerNumber())
+        );
+        Game.incPlayerNumber();
+
+        Player secondPlayer = PlayerFactory.getPlayer(
+                (Messenger.insertPlayerType(Game.getPlayerNumber()) == 1)
+                        ? PlayerType.BOT : PlayerType.LEATHER,
+                Messenger.insertPlayerName(Game.getPlayerNumber())
+        );
+        Game.incPlayerNumber();
 
         Player[] players = new Player[] {firstPlayer, secondPlayer};
+
+
 
         firstPlayer.selectHand();
         secondPlayer.selectHand();
 
-        Game.showSelectedHands(players);
+        Messenger.printSelectedHands(players);
 
-        Player winner = Game.evaluateRound(players);
+        Player winner = Game.play(players);
 
-        Game.showWinner(winner);
+        Messenger.showWinner(winner);
 
-        Game.printScores(players);
+        Messenger.printScores(players);
     }
 }
