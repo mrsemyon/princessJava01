@@ -1,23 +1,20 @@
 package com.mrsemyon;
 
-public class Hand{
-    private String name;
+import java.util.Map;
+import java.util.Set;
 
-    public String getName(){
-        return this.name;
-    }
+public enum Hand{
+    ROCK,
+    PAPER,
+    SCISSORS;
 
-    Hand(int value){
-        switch (value){
-            case 0:
-                this.name = "rock";
-                break;
-            case 1:
-                this.name = "paper";
-                break;
-            case 2:
-                this.name = "scissors";
-                break;
-        }
+    public static final Map<Hand, Set<Hand>> beatsMap = Map.of(
+            ROCK, Set.of(SCISSORS),
+            SCISSORS, Set.of(PAPER),
+            PAPER, Set.of(ROCK)
+    );
+
+    boolean beats(Hand other){
+        return beatsMap.get(this).contains(other);
     }
 }

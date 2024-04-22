@@ -1,22 +1,14 @@
 package com.mrsemyon;
 
-public class Player {
-    private int value;
-    private int status;
+public abstract class Player {
+    final String name;
+    int score = 0;
+    protected Hand lastHand = null;
 
-    public void setValue(int value) {
-        this.value = value;
+    Player(String name) {
+        this.name = name;
     }
 
-    public int getValue() {
-        return this.value;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public int getStatus() {
-        return this.status;
-    }
+    protected abstract void selectHand();
 }
+
