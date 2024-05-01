@@ -1,17 +1,18 @@
 package com.github.mrsemyon;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Messenger {
     private final Scanner input = new Scanner(System.in);
 
-    public void printScores(Player[] players){
+    public void printScores(List<Player> players){
         for (Player player : players) {
             System.out.printf("Score %s : %d\n", player.name, player.score);
         }
     }
 
-    public void printSelectedHands(Player[] players){
+    public void printSelectedHands(List<Player> players){
         for (Player player : players){
             System.out.printf("%s drawn %s\n", player.name, player.lastHand);
         }
@@ -38,5 +39,10 @@ public class Messenger {
     public String insertPlayerName(int playerNumber) {
         System.out.println("Insert the " + playerNumber + " player name");
         return input.next();
+    }
+
+    public int insertPlayersCount() {
+        System.out.println("Insert the number of players");
+        return input.nextInt();
     }
 }
