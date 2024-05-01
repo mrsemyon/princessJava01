@@ -7,13 +7,13 @@ public class App{
     public void run(){
         Messenger messenger = new Messenger();
         Game game = new Game();
+        List<Player> players = new ArrayList<>();
 
         messenger.welcome();
         int playersCount = messenger.insertPlayersCount();
-        List<Player> players = new ArrayList<Player>();
 
-        int playerType = 0;
-        String playerName = "";
+        int playerType;
+        String playerName;
 
         for (int i = 0; i < playersCount; i++) {
             playerType = messenger.insertPlayerType(i);
@@ -29,11 +29,7 @@ public class App{
         players.get(1).selectHand();
 
         messenger.printSelectedHands(players);
-
-        Player winner = game.play(players);
-
-        messenger.showWinner(winner);
-
+        messenger.showWinner(game.play(players));
         messenger.printScores(players);
     }
 }

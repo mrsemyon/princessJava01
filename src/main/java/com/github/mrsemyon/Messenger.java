@@ -23,7 +23,6 @@ public class Messenger {
             System.out.println("Draw -_-");
         } else {
             System.out.println(winner.name + " is win!");
-            winner.score++;
         }
     }
 
