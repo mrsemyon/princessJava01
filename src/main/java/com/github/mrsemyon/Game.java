@@ -12,10 +12,10 @@ public class Game{
         }
 
         if (first.beats(second)){
-            players.get(0).score++;
+            players.get(0).setScore(players.get(0).getScore() + 1);
             return players.get(0);
         } else {
-            players.get(1).score++;
+            players.get(1).setScore(players.get(1).getScore() + 1);
             return players.get(1);
         }
     }

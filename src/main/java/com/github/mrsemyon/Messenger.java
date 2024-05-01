@@ -8,13 +8,13 @@ public class Messenger {
 
     public void printScores(List<Player> players){
         for (Player player : players) {
-            System.out.printf("Score %s : %d\n", player.name, player.score);
+            System.out.printf("Score %s : %d\n", player.getName(), player.getScore());
         }
     }
 
     public void printSelectedHands(List<Player> players){
         for (Player player : players){
-            System.out.printf("%s drawn %s\n", player.name, player.lastHand);
+            System.out.printf("%s drawn %s\n", player.getName(), player.lastHand);
         }
     }
 
@@ -22,7 +22,7 @@ public class Messenger {
         if (winner == null){
             System.out.println("Draw -_-");
         } else {
-            System.out.println(winner.name + " is win!");
+            System.out.println(winner.getName() + " is win!");
         }
     }
 
