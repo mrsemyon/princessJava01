@@ -1,32 +1,32 @@
 package com.github.mrsemyon;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class App{
     public void run(){
         Messenger messenger = new Messenger();
         Game game = new Game();
 
         messenger.welcome();
+        int playersCount = messenger.insertPlayersCount();
+        List<Player> players = new ArrayList<Player>();
 
-        int playerType = messenger.insertPlayerType(1);
+        int playerType = 0;
+        String playerName = "";
 
-        Player firstPlayer = PlayerFactory.getPlayer(
-                (playerType == 1)
-                        ? PlayerType.BOT : PlayerType.LEATHER,
-                messenger.insertPlayerName(1)
-        );
+        for (int i = 0; i < playersCount; i++) {
+            playerType = messenger.insertPlayerType(i);
+            playerName = messenger.insertPlayerName(i);
 
-        playerType = messenger.insertPlayerType(2);
+            players.add(PlayerFactory.getPlayer(
+                    (playerType == 1) ? PlayerType.BOT : PlayerType.LEATHER,
+                    playerName
+            ));
+        }
 
-        Player secondPlayer = PlayerFactory.getPlayer(
-                (playerType == 1)
-                        ? PlayerType.BOT : PlayerType.LEATHER,
-                messenger.insertPlayerName(2)
-        );
-
-        Player[] players = new Player[] {firstPlayer, secondPlayer};
-
-        firstPlayer.selectHand();
-        secondPlayer.selectHand();
+        players.get(0).selectHand();
+        players.get(1).selectHand();
 
         messenger.printSelectedHands(players);
 
