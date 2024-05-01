@@ -1,4 +1,4 @@
-package com.mrsemyon;
+package com.github.mrsemyon;
 
 public class PlayerFactory{
     public static Player getPlayer(PlayerType type, String name) {

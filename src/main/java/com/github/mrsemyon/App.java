@@ -1,11 +1,11 @@
-package com.mrsemyon;
+package com.github.mrsemyon;
 
 public class App{
     public void run(){
         Messenger.welcome();
 
         Game game = new Game();
-        
+
         int playerType = Messenger.insertPlayerType(1);
 
         Player firstPlayer = PlayerFactory.getPlayer(

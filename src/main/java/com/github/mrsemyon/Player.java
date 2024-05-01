@@ -1,4 +1,4 @@
-package com.mrsemyon;
+package com.github.mrsemyon;
 
 public abstract class Player {
     final String name;
