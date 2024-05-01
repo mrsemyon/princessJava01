@@ -3,21 +3,21 @@ package com.github.mrsemyon;
 import java.util.Scanner;
 
 public class Messenger {
-    private static final Scanner input = new Scanner(System.in);
+    private final Scanner input = new Scanner(System.in);
 
-    public static void printScores(Player[] players){
+    public void printScores(Player[] players){
         for (Player player : players) {
             System.out.printf("Score %s : %d\n", player.name, player.score);
         }
     }
 
-    public static void printSelectedHands(Player[] players){
+    public void printSelectedHands(Player[] players){
         for (Player player : players){
             System.out.printf("%s drawn %s\n", player.name, player.lastHand);
         }
     }
 
-    public static void showWinner(Player winner){
+    public void showWinner(Player winner){
         if (winner == null){
             System.out.println("Draw -_-");
         } else {
@@ -26,16 +26,16 @@ public class Messenger {
         }
     }
 
-    public static void welcome() {
+    public void welcome() {
         System.out.println("Welcome to Rock, Paper & Scissors!");
     }
 
-    public static int insertPlayerType(int playerNumber) {
+    public int insertPlayerType(int playerNumber) {
         System.out.println("Insert the " + playerNumber + " player type (0 - human, 1 - bot)");
         return input.nextInt();
     }
 
-    public static String insertPlayerName(int playerNumber) {
+    public String insertPlayerName(int playerNumber) {
         System.out.println("Insert the " + playerNumber + " player name");
         return input.next();
     }
