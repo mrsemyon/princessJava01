@@ -1,7 +1,7 @@
 package com.mrsemyon;
 
 public class App{
-    App(){
+    public void run(){
         Messenger.welcome();
 
         Player firstPlayer = PlayerFactory.getPlayer(
