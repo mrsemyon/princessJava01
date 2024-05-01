@@ -1,4 +1,4 @@
-package com.mrsemyon;
+package com.github.mrsemyon;
 
 import java.util.Random;
 

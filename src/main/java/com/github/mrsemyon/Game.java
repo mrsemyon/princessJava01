@@ -1,19 +1,9 @@
-package com.mrsemyon;
-
-import java.util.ArrayList;
+package com.github.mrsemyon;
 
 public class Game{
-    private static Integer playerNumber = 1;
+    private Player[] players;
 
-    public static Integer getPlayerNumber() {
-        return playerNumber;
-    }
-
-    public static void incPlayerNumber() {
-        Game.playerNumber++;
-    }
-
-    static Player play(Player[] players){
+    public Player play(Player[] players){
         Hand first = players[0].lastHand;
         Hand second = players[1].lastHand;
         if (first == second){

@@ -1,33 +1,35 @@
-package com.mrsemyon;
+package com.github.mrsemyon;
 
 public class App{
-    App(){
+    public void run(){
         Messenger.welcome();
 
+        Game game = new Game();
+
+        int playerType = Messenger.insertPlayerType(1);
+
         Player firstPlayer = PlayerFactory.getPlayer(
-                (Messenger.insertPlayerType(Game.getPlayerNumber()) == 1)
+                (playerType == 1)
                         ? PlayerType.BOT : PlayerType.LEATHER,
-                Messenger.insertPlayerName(Game.getPlayerNumber())
+                Messenger.insertPlayerName(1)
         );
-        Game.incPlayerNumber();
+
+        playerType = Messenger.insertPlayerType(2);
 
         Player secondPlayer = PlayerFactory.getPlayer(
-                (Messenger.insertPlayerType(Game.getPlayerNumber()) == 1)
+                (playerType == 1)
                         ? PlayerType.BOT : PlayerType.LEATHER,
-                Messenger.insertPlayerName(Game.getPlayerNumber())
+                Messenger.insertPlayerName(2)
         );
-        Game.incPlayerNumber();
 
         Player[] players = new Player[] {firstPlayer, secondPlayer};
-
-
 
         firstPlayer.selectHand();
         secondPlayer.selectHand();
 
         Messenger.printSelectedHands(players);
 
-        Player winner = Game.play(players);
+        Player winner = game.play(players);
 
         Messenger.showWinner(winner);
 
