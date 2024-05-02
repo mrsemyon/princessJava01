@@ -1,38 +1,42 @@
 package com.github.mrsemyon;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.ArrayList;
+
 public class App{
-    public void run(){
-        Messenger.welcome();
-
+    public void run() throws IOException {
+        Messenger messenger = new Messenger();
         Game game = new Game();
+        List<Player> players = new ArrayList<>();
+        ObjectMapper mapper = new ObjectMapper();
 
-        int playerType = Messenger.insertPlayerType(1);
+        messenger.welcome();
+        int playersCount = messenger.insertPlayersCount();
 
-        Player firstPlayer = PlayerFactory.getPlayer(
-                (playerType == 1)
-                        ? PlayerType.BOT : PlayerType.LEATHER,
-                Messenger.insertPlayerName(1)
-        );
+        int playerType;
+        String playerName;
 
-        playerType = Messenger.insertPlayerType(2);
+        for (int i = 0; i < playersCount; i++) {
+            playerType = messenger.insertPlayerType(i);
+            playerName = messenger.insertPlayerName(i);
 
-        Player secondPlayer = PlayerFactory.getPlayer(
-                (playerType == 1)
-                        ? PlayerType.BOT : PlayerType.LEATHER,
-                Messenger.insertPlayerName(2)
-        );
+            players.add(PlayerFactory.getPlayer(
+                    (playerType == 1) ? PlayerType.BOT : PlayerType.LEATHER,
+                    playerName
+            ));
+        }
 
-        Player[] players = new Player[] {firstPlayer, secondPlayer};
+        players.get(0).selectHand();
+        players.get(1).selectHand();
 
-        firstPlayer.selectHand();
-        secondPlayer.selectHand();
-
-        Messenger.printSelectedHands(players);
-
-        Player winner = game.play(players);
-
-        Messenger.showWinner(winner);
-
-        Messenger.printScores(players);
+        messenger.printSelectedHands(players);
+        messenger.showWinner(game.play(players));
+        messenger.printScores(players);
+        mapper.writeValue(new File("test.json"), players);
     }
 }
